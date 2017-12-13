@@ -8,13 +8,18 @@
 
 <br>
  
-## 一、安装环境  
+## 一、安装环境  
+
+<br>
+
+#### python3
+
 <br>
 
 ### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
 <br>
 
-`pip install Scrapy`  
+`pip install Scrapy` 
 <br>
 
 windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)  
