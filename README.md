@@ -28,8 +28,14 @@ windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)
 `pip install Pillow`  
 <br>
 
+
  推荐使用 wheel 来安装 Pillow [点击此处]("https://www.lfd.uci.edu/~gohlke/pythonlibs/") 
+
 <br>
+
+<br>
+ 
+
   
 ## 二、使用 puzzle 生成拼图 （use puzzle.py create mosaik puzzle） 
 <br>
@@ -64,8 +70,14 @@ windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)
 
  
 test.jpg  
+<br>
+
 ![image](./test.jpg)  
+<br>
+
 output jpg  
+<br>
+
 ![image](./out.jpg)  
 
 
