@@ -1,0 +1,2 @@
+scrapy crawl images
+pause

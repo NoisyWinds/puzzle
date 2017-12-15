@@ -53,13 +53,13 @@ windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)
 ### 爬取图片（catch images） 
 <br>
 
-`Scrapy craw images`  
+`Scrapy crawl images`  or run catchImage.bat
 <br>
 
 ### 创建拼图图片 （create puzzle image）  
 <br>
 
-`python puzzle.py -i test.jpg -d D:/acg/acg/img/ -o output/`  
+`python puzzle.py -i test.jpg -d D:/acg/acg/img/ -o output/`  or run start.bat
 <br>
 
 ### 命令行参数（Command line parameters）  
