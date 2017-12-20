@@ -19,7 +19,9 @@
 ### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
 <br>
 
-`pip install Scrapy` 
+`pip install Scrapy`
+`pip install pip install twisted==13.1.0`
+
 <br>
 
 windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)  
