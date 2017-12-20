@@ -25,13 +25,6 @@
 <br>
 
 
-由于Twisted版本问题，需要重新安装指定版本
-<br>
-
-
-`pip install twisted==13.1.0`
-<br>
-
 windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)  
 推荐使用 wheel 来安装 opencv [点击此处](https://www.lfd.uci.edu/~gohlke/pythonlibs/)  
 <br>
