@@ -15,7 +15,7 @@
 ### use python3(若同时装有python2，以下命令均加前缀 python3 -m 如：)
 <br>
 
-`python3 pip install Scrapy`
+`python3 -m pip install Scrapy`
 <br>
 
 ### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
