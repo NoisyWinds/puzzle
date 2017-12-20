@@ -27,7 +27,7 @@
 <br>
 
 
-`pip install pip install twisted==13.1.0`
+`pip install twisted==13.1.0`
 
 <br>
 
