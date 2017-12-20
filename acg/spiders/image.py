@@ -1,3 +1,4 @@
+#coding=utf-8
 import scrapy
 import urllib.request,urllib.parse
 import numpy as np
