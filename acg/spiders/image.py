@@ -1,4 +1,6 @@
 #coding=utf-8
+from http.client import IncompleteRead
+
 import scrapy
 import urllib.request,urllib.parse
 import numpy as np
@@ -23,7 +25,6 @@ class acgimages(scrapy.Spider):
 		print("一共找到图片%d" % len(image_url))
 
 		for item in image_url:
-			#item = item.split('!')[0]
 			item = urllib.parse.quote(item,safe='/:?=.')
 			if 'jpg' in item:
 				self.count = self.count + 1
@@ -67,21 +68,28 @@ class acgimages(scrapy.Spider):
 		req.add_header("GET",item)
 		req.add_header("Host","img.gov.com.de")
 		req.add_header("Referer",item)
-		res = urllib.request.urlopen(req).read()
-		image = np.asarray(bytearray(res),dtype="uint8")
-		image = cv2.imdecode(image,cv2.IMREAD_COLOR)
-		height,width = image.shape[:2]
-		if height > width:
-			scalefactor = (maxsize*1.0) / width
-			res = cv2.resize(image,(int(width * scalefactor),(int(height * scalefactor))),interpolation = cv2.INTER_CUBIC)
-			cutImage = res[0:maxsize,0:maxsize]
-		if width >= height:
-			scalefactor = (maxsize*1.0) / height
-			res = cv2.resize(image,(int(width * scalefactor), int(height*scalefactor)), interpolation = cv2.INTER_CUBIC)
-			center_x = int(round(width*scalefactor*0.5))
-			cutImage = res[0:maxsize,int(center_x - maxsize/2):int(center_x + maxsize/2)]
-		cv2.imwrite(path,cutImage)
-		print('image is save in ' + path)
+		try:
+			res = urllib.request.urlopen(req,timeout=30).read()
+			image = np.asarray(bytearray(res),dtype="uint8")
+			image = cv2.imdecode(image,cv2.IMREAD_COLOR)
+			height,width = image.shape[:2]
+			if height > width:
+				scalefactor = (maxsize*1.0) / width
+				res = cv2.resize(image,(int(width * scalefactor),(int(height * scalefactor))),interpolation = cv2.INTER_CUBIC)
+				cutImage = res[0:maxsize,0:maxsize]
+			if width >= height:
+				scalefactor = (maxsize*1.0) / height
+				res = cv2.resize(image,(int(width * scalefactor), int(height*scalefactor)), interpolation = cv2.INTER_CUBIC)
+				center_x = int(round(width*scalefactor*0.5))
+				cutImage = res[0:maxsize,int(center_x - maxsize/2):int(center_x + maxsize/2)]
+			cv2.imwrite(path,cutImage)
+			print('image is save in ' + path)
+		except urllib.error.HTTPError as e:
+			print(e.code)
+		except (IncompleteRead) as e:
+			print(e.code)
+		except urllib.error.URLError:
+			print(1)
 
 	print("pageend,total:%d" % count)
 
