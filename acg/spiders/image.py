@@ -23,7 +23,7 @@ class acgimages(scrapy.Spider):
 		print("一共找到图片%d" % len(image_url))
 
 		for item in image_url:
-			item = item.split('!')[0]
+			#item = item.split('!')[0]
 			item = urllib.parse.quote(item,safe='/:?=.')
 			if 'jpg' in item:
 				self.count = self.count + 1
