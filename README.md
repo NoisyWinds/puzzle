@@ -12,15 +12,18 @@
 
 <br>
 
-### use python3
+### use python3(若同时装有python2，以下命令均加前缀 python3 -m 如：)
+<br>
 
+`python3 -m pip install Scrapy`
 <br>
 
 ### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
 <br>
 
-`pip install Scrapy` 
+`pip install Scrapy`
 <br>
+
 
 windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)  
 推荐使用 wheel 来安装 opencv [点击此处](https://www.lfd.uci.edu/~gohlke/pythonlibs/)  
