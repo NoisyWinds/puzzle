@@ -18,32 +18,38 @@ def get_avg_color(img):
 
     width, height = img.size
     pixels = img.load()
-    data = []
-    for x in range(width):
-        for y in range(height):
-            cpixel = pixels[x, y]
-            data.append(cpixel)
-    h = 0
-    s = 0
-    v = 0
-    count = 0
-    for x in range(len(data)):
+    if type(pixels) is not int:
+        data = []
+        for x in range(width):
+            for y in range(height):
+                cpixel = pixels[x, y]
+                data.append(cpixel)
+        h = 0
+        s = 0
+        v = 0
+        count = 0
+        for x in range(len(data)):
 
-        r = data[x][0]
-        g = data[x][1]
-        b = data[x][2]
-        count += 1
+            r = data[x][0]
+            g = data[x][1]
+            b = data[x][2]
+            count += 1
 
-        hsv = rgb_to_hsv(r / 255.0,g / 255.0,b / 255.0)
-        h += hsv[0]
-        s += hsv[1]
-        v += hsv[2]
+            hsv = rgb_to_hsv(r / 255.0,g / 255.0,b / 255.0)
+            h += hsv[0]
+            s += hsv[1]
+            v += hsv[2]
 
-    hAvg = round(h / count,3)
-    sAvg = round(s / count,3)
-    vAvg = round(v / count,3)
+        hAvg = round(h / count,3)
+        sAvg = round(s / count,3)
+        vAvg = round(v / count,3)
 
-    return (hAvg,sAvg,vAvg)
+        if count > 0:
+            return (hAvg,sAvg,vAvg)
+        else:
+            print("读取图片数据失败")
+    else:
+        print("PIL 读取图片数据失败,请更换图片,欢迎提供解决方案")
 
 
 def find_closiest(color, list_colors):
@@ -95,6 +101,7 @@ def get_image_paths():
         print("一共找到了%s" % len(paths) + "张图片")
     else:
         print("未找到任何图片")
+
     return paths 
 
 def resize_pic(in_name,size):

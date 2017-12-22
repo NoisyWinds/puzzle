@@ -1,4 +1,5 @@
 #coding=utf-8
+#update at 2017-12-22
 from http.client import IncompleteRead
 
 import scrapy
@@ -89,7 +90,7 @@ class acgimages(scrapy.Spider):
 		except (IncompleteRead) as e:
 			print(e.code)
 		except urllib.error.URLError:
-			print(1)
+			print('URLError:%s' % item)
 
 	print("pageend,total:%d" % count)
 
