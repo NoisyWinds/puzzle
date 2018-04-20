@@ -1,49 +1,36 @@
-# 基于 hsv 的马赛克拼图效果  
+# 基于 hsv 的马赛克拼图效果
 <br>
 
 知乎链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
 
 <br>
-
-
+## 2018-4-20 更新内容
+- 修复抓取路径到 2018-4-20 可用
+- 使用 ImagesPipeline 下载图片
+- 抓取时不处理图片（对应一些人想要原图的要求）
 <br>
  
-## 一、安装环境  
-
+## 一、安装环境 （python3.6 or upper）
 <br>
-
-### use python3(若同时装有python2，以下命令均加前缀 python3 -m 如：)
-<br>
-
-`python3 -m pip install Scrapy`
+`pip install Scrapy`
 <br>
 
 ### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
 <br>
-
 `pip install Scrapy`
-<br>
-
-
-windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)  
-推荐使用 wheel 来安装 opencv [点击此处](https://www.lfd.uci.edu/~gohlke/pythonlibs/)  
+<br> 
+推荐使用whl进行安装 [点击此处](https://www.lfd.uci.edu/~gohlke/pythonlibs/)  
 <br>
 
 ### 2.安装 numpy 科学计算库 (install numpy) 
 <br>
-
 `pip install numpy`  
 <br>
-
 ### 3.安装 Pillow 图像处理库 (install Pillow)
 <br>
-
 `pip install Pillow`  
 <br>
-
-
  推荐使用 wheel 来安装 Pillow [点击此处]("https://www.lfd.uci.edu/~gohlke/pythonlibs/") 
-
 <br>
 
 <br>
@@ -52,10 +39,9 @@ windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)
   
 ## 二、使用 puzzle 生成拼图 （use puzzle.py create mosaik puzzle） 
 <br>
-
-### 爬取图片（catch images） 
+### 爬取图片（catch images）
+* 图片默认存储路径是 database/full 文件夹，图片名未hash值
 <br>
-
 `Scrapy crawl images`  or run catchImage.bat
 <br>
 
@@ -64,7 +50,6 @@ windows 安装可以 [点击此处](https://sourceforge.net/projects/pywin32/)
 
 `python puzzle.py -i test.jpg -d D:/acg/acg/img/ -o output/`  or run start.bat
 <br>
-
 ### 命令行参数（Command line parameters）  
 <br>
 

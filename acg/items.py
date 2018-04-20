@@ -8,7 +8,10 @@
 import scrapy
 
 
-class AcgItem(scrapy.Item):
+class ImageItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    image = scrapy.Field()
+    url = scrapy.Field()
+    images = scrapy.Field()
+
+
