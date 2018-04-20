@@ -13,34 +13,50 @@
 <br>
  
 ## 一、安装环境 （python3.6 or upper）
+
 <br>
+
 `pip install Scrapy`
+
 <br>
 
 ### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
 <br>
+
 `pip install Scrapy`
+
 <br> 
+
 推荐使用whl进行安装 [点击此处](https://www.lfd.uci.edu/~gohlke/pythonlibs/)  
+
 <br>
 
 ### 2.安装 numpy 科学计算库 (install numpy) 
+
 <br>
+
 `pip install numpy`  
+
 <br>
+
 ### 3.安装 Pillow 图像处理库 (install Pillow)
+
 <br>
+
 `pip install Pillow`  
+
 <br>
+
  推荐使用 wheel 来安装 Pillow [点击此处]("https://www.lfd.uci.edu/~gohlke/pythonlibs/") 
+
 <br>
 
 <br>
  
-
-  
 ## 二、使用 puzzle 生成拼图 （use puzzle.py create mosaik puzzle） 
+
 <br>
+
 ### 爬取图片（catch images）
 * 图片默认存储路径是 database/full 文件夹，图片名未hash值
 
@@ -51,11 +67,15 @@
 <br>
 
 ### 创建拼图图片 （create puzzle image）  
+
 <br>
 
 `python puzzle.py -i test.jpg -d D:/acg/acg/img/ -o output/`  or run start.bat
+
 <br>
-### 命令行参数（Command line parameters）  
+
+### 命令行参数（Command line parameters）
+
 <br>
 
 * -s -- save  已经存在output文件夹已经有马赛克图片，快速生成图片 Created faster when there have  mosaik pictures
@@ -71,8 +91,8 @@
 
 <br>
 
- 
 test.jpg  
+
 <br>
 
 ![image](./test.jpg)  
