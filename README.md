@@ -4,10 +4,12 @@
 知乎链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
 
 <br>
+
 ## 2018-4-20 更新内容
 - 修复抓取路径到 2018-4-20 可用
 - 使用 ImagesPipeline 下载图片
 - 抓取时不处理图片（对应一些人想要原图的要求）
+
 <br>
  
 ## 一、安装环境 （python3.6 or upper）
@@ -41,8 +43,11 @@
 <br>
 ### 爬取图片（catch images）
 * 图片默认存储路径是 database/full 文件夹，图片名未hash值
+
 <br>
+
 `Scrapy crawl images`  or run catchImage.bat
+
 <br>
 
 ### 创建拼图图片 （create puzzle image）  
