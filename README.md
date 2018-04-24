@@ -1,7 +1,7 @@
 # 基于 hsv 的马赛克拼图效果
 <br>
 
-知乎链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
+文章链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
 
 <br>
 
@@ -9,18 +9,15 @@
 - 修复抓取路径到 2018-4-20 可用
 - 使用 ImagesPipeline 下载图片
 - 抓取时不处理图片（对应一些人想要原图的要求）
+- 考虑到 opencv 库比较难安装，处理图片改为使用 Pillow（PIL）库。
 
 <br>
  
 ## 一、安装环境 （python3.6 or upper）
 
-<br>
 
-`pip install Scrapy`
+### 1.安装 Scrapy 爬虫框架  (install Scrapy 1.4 upper)  
 
-<br>
-
-### 1.安装 Scrapy 爬虫框架  (install Scrapy)  
 <br>
 
 `pip install Scrapy`
@@ -58,7 +55,10 @@
 <br>
 
 ### 爬取图片（catch images）
-* 图片默认存储路径是 database/full 文件夹，图片名未hash值
+
+* 图片默认存储路径是 database/full 文件夹，图片名为hash值
+* 自定义路径请在 setting.py 中进行修改
+* 自定义文件名请在 pipelines.py 中重构 ImagesPipeline 类
 
 <br>
 
@@ -74,7 +74,7 @@
 
 <br>
 
-### 命令行参数（Command line parameters）
+### 命令行参数说明（Command line parameters）
 
 <br>
 
@@ -102,5 +102,12 @@ output jpg
 <br>
 
 ![image](./out.jpg)  
+
+<br>
+
+# 已知问题
+- 少数图片，图片后缀名错误，比如说jpg图片修改后缀名为png进行伪造将会影响 Pillow 读取像素信息。（4-20 更新已经跳过影响图片）
+
+- 更多优化建议，bug信息请在评论区回复，感谢支持。
 
 

@@ -10,12 +10,11 @@ from colorsys import rgb_to_hsv
 
 SLICE_SIZE = 85
 OUT_SIZE = 5000
-IN_DIR = "database/"
+IN_DIR = "database/full/"
 OUT_DIR = "output/"
 REPATE = 0
 
 def get_avg_color(img):
-
     width, height = img.size
     pixels = img.load()
     if type(pixels) is not int:
@@ -48,8 +47,10 @@ def get_avg_color(img):
             return (hAvg,sAvg,vAvg)
         else:
             print("读取图片数据失败")
+            return False
     else:
-        print("PIL 读取图片数据失败,请更换图片,欢迎提供解决方案")
+        print("PIL 读取图片数据失败")
+        return False
 
 
 def find_closiest(color, list_colors):
@@ -77,16 +78,14 @@ def make_puzzle(img, color_list):
         for x1 in range(0, width, SLICE_SIZE):
             y2 = y1 + SLICE_SIZE
             x2 = x1 + SLICE_SIZE
-
             new_img = img.crop((x1, y1, x2, y2))
-
             color = get_avg_color(new_img)
             close_img_name = find_closiest(color, color_list)
             close_img_name = OUT_DIR + str(close_img_name) + '.jpg'
             paste_img = Image.open(close_img_name)
             now_images += 1
-            now_done = math.floor((now_images/total_images)*100)
-            r = '\r[{}{}]{}%'.format("#"*now_done," "*(100 - now_done),now_done)
+            now_done = math.floor((now_images / total_images) * 100)
+            r = '\r[{}{}]{}%'.format("#"*now_done," " * (100 - now_done),now_done)
             sys.stdout.write(r)                          
             sys.stdout.flush()    
             background.paste(paste_img, (x1, y1))
@@ -113,7 +112,10 @@ def resize_pic(in_name,size):
 def convert_image(path):
     img = resize_pic(path,SLICE_SIZE)
     color = get_avg_color(img)
-    img.save(str(OUT_DIR) + str(color) + ".jpg")
+    
+    # 不再保存无法读取的图片
+    if color:
+        img.save(str(OUT_DIR) + str(color) + ".jpg")
 
 
 def convert_all_images():

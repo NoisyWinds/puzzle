@@ -24,8 +24,3 @@ class SaveImagesPipeline(ImagesPipeline):
 		self.headers['Referer'] = item['url']
 		for image_url in item['images']:
 			yield scrapy.Request(image_url,headers = self.headers)
-
-
-
-
-
