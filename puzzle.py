@@ -28,12 +28,10 @@ def get_avg_color(img):
         v = 0
         count = 0
         for x in range(len(data)):
-
             r = data[x][0]
             g = data[x][1]
             b = data[x][2]
             count += 1
-
             hsv = rgb_to_hsv(r / 255.0,g / 255.0,b / 255.0)
             h += hsv[0]
             s += hsv[1]
@@ -112,7 +110,7 @@ def resize_pic(in_name,size):
 def convert_image(path):
     img = resize_pic(path,SLICE_SIZE)
     color = get_avg_color(img)
-    
+
     # 不再保存无法读取的图片
     if color:
         img.save(str(OUT_DIR) + str(color) + ".jpg")
