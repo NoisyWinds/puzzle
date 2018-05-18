@@ -1,10 +1,6 @@
 # 基于 hsv 的马赛克拼图效果
 <br>
 
-<p align="center">
-  <img src="https://img.shields.io/circleci/project/vuejs/vue/dev.svg" alt="Build Status">
-</p>
-
 文章链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
 
 <br>
@@ -67,7 +63,7 @@
 
 <br>
 
-`python run.py`  or run catchImage.bat
+`python run.py`  or ``scrapy crawl images` or run catchImage.bat
 
 <br>
 
