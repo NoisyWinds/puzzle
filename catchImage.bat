@@ -1,2 +1,2 @@
-scrapy crawl images
+python run.py
 pause

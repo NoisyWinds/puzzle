@@ -1,6 +1,10 @@
 # 基于 hsv 的马赛克拼图效果
 <br>
 
+<p align="center">
+  <img src="https://img.shields.io/circleci/project/vuejs/vue/dev.svg" alt="Build Status">
+</p>
+
 文章链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
 
 <br>
@@ -10,6 +14,7 @@
 - 使用 ImagesPipeline 下载图片
 - 抓取时不处理图片（对应一些人想要原图的要求）
 - 考虑到 opencv 库比较难安装，处理图片改为使用 Pillow（PIL）库。
+- 请勿占用站长大量带宽，谢谢。
 
 <br>
  
@@ -62,15 +67,15 @@
 
 <br>
 
-`Scrapy crawl images`  or run catchImage.bat
+`python run.py`  or run catchImage.bat
 
 <br>
 
 ### 创建拼图图片 （create puzzle image）  
 
 <br>
-
-`python puzzle.py -i test.jpg -d D:/acg/acg/img/ -o output/`  or run start.bat
+- 注意，路径后面要有反斜杠
+`python puzzle.py -i test.jpg -d D:/acg/img/ -o output/`  or run start.bat
 
 <br>
 

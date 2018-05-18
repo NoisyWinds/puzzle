@@ -42,13 +42,12 @@ def get_avg_color(img):
         vAvg = round(v / count,3)
 
         if count > 0:
+
             return (hAvg,sAvg,vAvg)
         else:
-            print("读取图片数据失败")
-            return False
+            raise IOError("读取图片数据失败")
     else:
-        print("PIL 读取图片数据失败")
-        return False
+        raise IOError("PIL 读取图片数据失败")
 
 
 def find_closiest(color, list_colors):
@@ -61,7 +60,7 @@ def find_closiest(color, list_colors):
             diff = n_diff
             cur_closer = cur_color
     if not cur_closer:
-        print("没有足够的近似图片，建议设置重复")
+        raise ValueError("没有足够的近似图片，建议设置重复")
     cur_closer[3] += 1
     return "({}, {}, {})".format(cur_closer[0],cur_closer[1],cur_closer[2])
 
@@ -74,19 +73,22 @@ def make_puzzle(img, color_list):
     now_images = 0
     for y1 in range(0, height, SLICE_SIZE):
         for x1 in range(0, width, SLICE_SIZE):
-            y2 = y1 + SLICE_SIZE
-            x2 = x1 + SLICE_SIZE
-            new_img = img.crop((x1, y1, x2, y2))
-            color = get_avg_color(new_img)
-            close_img_name = find_closiest(color, color_list)
-            close_img_name = OUT_DIR + str(close_img_name) + '.jpg'
-            paste_img = Image.open(close_img_name)
-            now_images += 1
-            now_done = math.floor((now_images / total_images) * 100)
-            r = '\r[{}{}]{}%'.format("#"*now_done," " * (100 - now_done),now_done)
-            sys.stdout.write(r)                          
-            sys.stdout.flush()    
-            background.paste(paste_img, (x1, y1))
+            try:
+                y2 = y1 + SLICE_SIZE
+                x2 = x1 + SLICE_SIZE
+                new_img = img.crop((x1, y1, x2, y2))
+                color = get_avg_color(new_img)
+                close_img_name = find_closiest(color, color_list)
+                close_img_name = OUT_DIR + str(close_img_name) + '.jpg'
+                paste_img = Image.open(close_img_name)
+                now_images += 1
+                now_done = math.floor((now_images / total_images) * 100)
+                r = '\r[{}{}]{}%'.format("#"*now_done," " * (100 - now_done),now_done)
+                sys.stdout.write(r)                          
+                sys.stdout.flush()    
+                background.paste(paste_img, (x1, y1))
+            except IOError:
+                print('创建马赛克块失败')
     return background
 
 
@@ -97,28 +99,27 @@ def get_image_paths():
     if len(paths) > 0:
         print("一共找到了%s" % len(paths) + "张图片")
     else:
-        print("未找到任何图片")
+        raise IOError("未找到任何图片")
 
     return paths 
 
 def resize_pic(in_name,size):
-
     img = Image.open(in_name)
     img = ImageOps.fit(img, (size, size), Image.ANTIALIAS)
     return img
 
 def convert_image(path):
-    img = resize_pic(path,SLICE_SIZE)
-    color = get_avg_color(img)
-
-    # 不再保存无法读取的图片
-    if color:
+    try:
+        img = resize_pic(path,SLICE_SIZE)
+        color = get_avg_color(img)
         img.save(str(OUT_DIR) + str(color) + ".jpg")
-
+    except IOError:
+        print('图片处理失败')
 
 def convert_all_images():
     paths = get_image_paths()
     print("正在生成马赛克块...")
+    
     pool = Pool()
     pool.map(convert_image, paths)
     pool.close()
