@@ -12,6 +12,7 @@ SLICE_SIZE = 85
 OUT_SIZE = 5000
 IN_DIR = "database/full/"
 OUT_DIR = "output/"
+FAR = 1000
 REPATE = 0
 
 def get_avg_color(img):
@@ -51,13 +52,12 @@ def get_avg_color(img):
 
 
 def find_closiest(color, list_colors):
-    diff = 1000
     cur_closer = False
     arr_len = 0
     for cur_color in list_colors:
         n_diff = math.sqrt(math.pow(math.fabs(color[0]-cur_color[0]), 2) + math.pow(math.fabs(color[1]-cur_color[1]), 2) + math.pow(math.fabs(color[2]-cur_color[2]), 2))
-        if n_diff < diff and cur_color[3] <= REPATE:
-            diff = n_diff
+        if n_diff < FAR and cur_color[3] <= REPATE:
+            FAR = n_diff
             cur_closer = cur_color
     if not cur_closer:
         raise ValueError("没有足够的近似图片，建议设置重复")
@@ -94,8 +94,13 @@ def make_puzzle(img, color_list):
 
 def get_image_paths():
     paths = []
+    suffixs = ['png','jpg'];
     for file_ in os.listdir(IN_DIR):
-        paths.append(IN_DIR + file_)
+        suffix = file_.split('.',1)[1]
+        if suffix in suffixs:
+            paths.append(IN_DIR + file_)
+        else:
+            print("非图片:%s" % file_)
     if len(paths) > 0:
         print("一共找到了%s" % len(paths) + "张图片")
     else:
@@ -113,13 +118,13 @@ def convert_image(path):
         img = resize_pic(path,SLICE_SIZE)
         color = get_avg_color(img)
         img.save(str(OUT_DIR) + str(color) + ".jpg")
-    except IOError:
-        print('图片处理失败')
+    except:
+        return False
+
 
 def convert_all_images():
     paths = get_image_paths()
     print("正在生成马赛克块...")
-    
     pool = Pool()
     pool.map(convert_image, paths)
     pool.close()
@@ -146,9 +151,10 @@ if __name__ == '__main__':
     parse.add_argument("-d", "--db", type=str, required=True,help="source database")
     parse.add_argument("-o", "--output", type=str, required=True,help="out directory")
     parse.add_argument("-s","--save",type=str,required=False,help="create image but not create database")
-    parse.add_argument("-is",'--inputSize',type=str, required=False,help="inputSize")
-    parse.add_argument("-os",'--outputSize',type=str, required=False,help="outputSize")
+    parse.add_argument("-is",'--inputSize',type=int, required=False,help="inputSize")
+    parse.add_argument("-os",'--outputSize',type=int, required=False,help="outputSize")
     parse.add_argument("-r",'--repate',type=int, required=False,help="repate number")
+    parse.add_argument("-far",'--far',type=int, required=False,help="image difference")
     args = parse.parse_args()
     start_time = time.time()
     args = parse.parse_args()
@@ -161,11 +167,13 @@ if __name__ == '__main__':
     if args.inputSize:
         SLICE_SIZE = args.inputSize
     if args.outputSize:
-        OUT_SIZE = args.outputSize
+        OUT_SIZE = int(args.outputSize)
     if not args.save:
         convert_all_images()
     if args.repate:
         REPATE = args.repate
+    if args.far:
+        FAR = args.far
 
     img = resize_pic(image,OUT_SIZE)
     list_of_imgs = read_img_db()

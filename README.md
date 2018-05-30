@@ -5,6 +5,13 @@
 
 <br>
 
+## 2018-5-30 更新内容
+- 修复了生成失败中断的问题
+- 不再读取数据库中的非图片文件
+- 自定义最低相似标准 -far （默认1000）
+- 修复命令行参数类型错误（竟然没人发现）。。。
+- 爬虫依旧有效
+
 ## 2018-4-20 更新内容
 - 修复抓取路径到 2018-4-20 可用
 - 使用 ImagesPipeline 下载图片
@@ -85,6 +92,7 @@
 * -o -- output 马赛克图标生成路径 output mosaik pictures path
 * -is -os 输入（马赛克块）/ 输出（生成图） 图片尺寸  input size / output size
 * -r --repate（int） 重复（建议在图片集少的时候设置） mosaik repate (When image is not enough)
+* -far --far（int） 相似度（可以在无法构造图片的时候适当增大，默认1000） masaik difference
 
 <br>
  
