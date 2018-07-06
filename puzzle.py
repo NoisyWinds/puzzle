@@ -8,12 +8,12 @@ import math
 import sys
 from colorsys import rgb_to_hsv
 
-SLICE_SIZE = 85
+SLICE_SIZE = 100
 OUT_SIZE = 5000
 IN_DIR = "database/full/"
 OUT_DIR = "output/"
-FAR = 1000
-REPATE = 0
+DIFF_FAR = 10000
+REPATE = 5
 
 def get_avg_color(img):
     width, height = img.size
@@ -56,7 +56,7 @@ def find_closiest(color, list_colors):
     arr_len = 0
     for cur_color in list_colors:
         n_diff = math.sqrt(math.pow(math.fabs(color[0]-cur_color[0]), 2) + math.pow(math.fabs(color[1]-cur_color[1]), 2) + math.pow(math.fabs(color[2]-cur_color[2]), 2))
-        if n_diff < FAR and cur_color[3] <= REPATE:
+        if n_diff < DIFF_FAR and cur_color[3] <= REPATE:
             FAR = n_diff
             cur_closer = cur_color
     if not cur_closer:
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     if args.repate:
         REPATE = args.repate
     if args.far:
-        FAR = args.far
+        DIFF_FAR = args.far
 
     img = resize_pic(image,OUT_SIZE)
     list_of_imgs = read_img_db()
