@@ -54,9 +54,10 @@ def get_avg_color(img):
 def find_closiest(color, list_colors):
     cur_closer = False
     arr_len = 0
+    FAR = DIFF_FAR
     for cur_color in list_colors:
         n_diff = math.sqrt(math.pow(math.fabs(color[0]-cur_color[0]), 2) + math.pow(math.fabs(color[1]-cur_color[1]), 2) + math.pow(math.fabs(color[2]-cur_color[2]), 2))
-        if n_diff < DIFF_FAR and cur_color[3] <= REPATE:
+        if n_diff < FAR and cur_color[3] <= REPATE:
             FAR = n_diff
             cur_closer = cur_color
     if not cur_closer:
