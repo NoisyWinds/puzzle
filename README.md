@@ -1,8 +1,12 @@
 # 基于 hsv 的马赛克拼图效果
 <br>
+
 [![Build Status](https://travis-ci.org/ThomasHuai/puzzle.svg?branch=master)](https://travis-ci.org/ThomasHuai/puzzle)
+
 <br>
+
 文章链接：[利用爬虫技术能做到哪些很酷很有趣很有用的事情？](https://www.zhihu.com/question/27621722/answer/269085034)
+
 <br>
 
 ## 2018-5-30 更新内容
