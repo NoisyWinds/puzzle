@@ -7,4 +7,4 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - python puzzle.py
+  - python puzzle.py -i test.jpg -d  database/full/  -o output/ -r 100000
