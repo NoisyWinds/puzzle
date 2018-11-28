@@ -1,7 +1,7 @@
 # 基于 hsv 的马赛克拼图效果
 <br>
 
-[![Build Status](https://travis-ci.org/ThomasHuai/puzzle.svg?branch=master)](https://travis-ci.org/ThomasHuai/puzzle)
+[![Build Status](https://travis-ci.org/NoisyWinds/puzzle.svg?branch=master)](https://travis-ci.org/ThomasHuai/puzzle)
 
 <br>
 
